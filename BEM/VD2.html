@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .button-show-toast {
+            display: flex;
+        }
+
+        .btn {
+            min-width: 80px;
+            max-width: 200px;
+            border-radius: 20px;
+            padding: 10px 25px;
+            color: white;
+        }
+
+        .btn + .btn {
+            margin-left: 20px;
+        }
+
+        .btn--success {
+            background: powderblue;
+        }
+
+        .btn--info {
+            background: lightgreen;
+        }
+
+        .btn--warning {
+            background: orange;
+        }
+
+        .toast {
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 2px;
+            border-left: 4px solid;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.08);
+            padding: 15px 0;
+            max-width: 300px;
+            transition: all linear 0.4s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(calc(100% + 32px));
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+
+        }
+
+        .toast__icon {
+            font-size: 24px;
+            padding: 0 16px;
+        }
+
+        .toast__body {
+            flex-grow: 1;
+        }
+
+        .toast__title {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .toast__message {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .toast__close {
+            padding: 0 16px;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.05);
+        }
+
+        .toast + .toast {
+            margin-top: 10px;
+        }
+
+        .toast--success {
+            border-color: powderblue;
+        }
+
+        .toast--info {
+            border-color: lightgreen;
+        }
+
+        .toast--warning {
+            border-color: orange;
+        }
+
+        .toast--success .toast__icon {
+            color: powderblue;
+        }
+
+        .toast--info .toast__icon {
+            color: lightgreen;
+        }
+
+        .toast--warning .toast__icon {
+            color: orange;
+        }
+
+        #toast {
+            position: fixed;
+            top: 32px;
+            right: 32px;
+        }
+    </style>
+</head>
+<body>
+<div id="toast"></div>
+<div class="button-show-toast">
+    <div class="btn btn--success" onclick="showSuccessToast()">Show success toast</div>
+    <div class="btn btn--info" onclick="showInfoToast()">Show info toast</div>
+    <div class="btn btn--warning" onclick="showWarningToast()">Show warning toast</div>
+</div>
+</body>
+</html>
+<script>
+    function toast({
+                       title = '',
+                       message = '',
+                       type = '',
+                       duration = 3000
+                   }) {
+        const main = document.getElementById('toast')
+        if (main) {
+            const toast = document.createElement('div')
+
+            const autoRemove = setTimeout(function (){
+                main.removeChild(toast)
+            }, duration + 1000)
+
+            toast.onclick = function (e){
+                if(e.target.closest('toast__close')){
+                    main.removeChild(toast)
+                    clearTimeout(autoRemove)
+                }
+            }
+
+            const icons = {
+                success: 'fas fa-check-circle',
+                info: 'fas fa-info-circle',
+                warning: 'fas fa-exclamation-circle'
+            }
+            const icon = icons[type]
+            const delay = (duration/1000).toFixed(2)
+
+            toast.classList.add('toast', `toast--${type}`)
+            toast.style.animation = `slideInLeft ease 0.5s, fadeOut linear 1s ${delay}s forwards;`
+            toast.innerHTML = `
+                 <div class="toast__icon">
+                     <i class="${icon}"></i>
+                  </div>
+                 <div class="toast__body">
+                      <h3 class="toast__title">${title}</h3>
+                      <p class="toast__message">${message}</p>
+                 </div>
+                 <div class="toast__close">
+                      <i class="fas fa-times"></i>
+                 </div>
+    `;
+            main.appendChild(toast)
+
+        }
+    }
+
+    function showSuccessToast(){
+        toast({
+            title: 'Thanh cong',
+            message:'Thanh cong xuc sac',
+            type: 'success',
+            duration: 3000
+        })
+    }
+    function showInfoToast(){
+        toast({
+            title: 'Info',
+            message:'Get more info',
+            type: 'info',
+            duration: 3000
+        })
+    }
+    function showWarningToast(){
+        toast({
+            title: 'Warning',
+            message:'Dung co cham vao',
+            type: 'warning',
+            duration: 3000
+        })
+    }
+
+</script>
+
