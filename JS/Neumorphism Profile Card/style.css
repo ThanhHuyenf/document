@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: Quicksand;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ecf0f3;
+}
+.wrapper,
+
+.wrapper .img-area,
+.social-icons a,
+.buttons button{
+    background: #ecf0f3;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
+}
+.wrapper{
+    padding: 30px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.wrapper .img-area{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-area .inner-area{
+    width: calc(100% - 25px);
+    height: calc(100% - 25px);
+    border-radius: 50%;
+}
+.inner-area img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.wrapper .name{
+    font-size: 25px;
+    color: #31344b;
+    margin: 10px 0px 5px 0px;
+    font-weight: 600;
+}
+.wrapper .about{
+    font-size: 16px;
+    color: #44476a;
+}
+.wrapper .social-icons{
+    margin: 15px 0px 25px 0px;
+
+}
+.social-icons a{
+    text-decoration: none;
+    height: 40px;
+    width: 40px;
+    display: inline-flex;
+    margin: 0px 5px;
+    border-radius: 10px;
+    position: relative;
+}
+.social-icons a:hover::before,
+.buttons button:hover::before,
+.wrapper .icon:hover::before
+{
+    position: absolute;
+    content: "";
+    top:0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background: #ecf0f3;
+    border-radius: 10px;
+    box-shadow:  inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
+}
+.buttons button:hover::before{
+    border-radius: 5px;
+    z-index: -1;
+}
+.social-icons a i{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+    z-index: 5;
+}
+.social-icons a.facebook i{
+    font-size: 20px;
+    color: #4267b2;
+}
+.social-icons a.instagram i{
+    font-size: 25px;
+    color: #e1306c;
+}
+.social-icons a.github i{
+    font-size: 25px;
+    color: #31344b;
+}
+.wrapper .buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.buttons button{
+    position: relative;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    font-size: 17px;
+    font-weight: 400;
+    border-radius: 5px;
+    color: #31344b;
+    cursor: pointer;
+    z-index: 4;
+}
+.buttons button:last-child{
+    margin-left: 10px;
+}
+.wrapper .paw{
+    margin-top: 20px;
+}
+.wrapper .icon{
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    color: #31344b;
+    opacity: 0.7;
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    bottom: 20px;
+    top: 15px;
+}
+.wrapper .icon.arrow{
+    left: 25px;
+}
+.wrapper .icon.dots{
+    right: 25px;
+}
+.wrapper .icon i{
+    position: relative;
+    z-index: 5;
+}
