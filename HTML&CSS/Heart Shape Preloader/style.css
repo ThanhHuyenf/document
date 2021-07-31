@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.preloader span{
+    display: block;
+    position: absolute;
+    height: 64px;
+    width: 64px;
+    background: #1da1f2;
+    border-radius: 100%;
+    border: 1px solid #1da1f2;
+}
+.preloader{
+    animation: rotate 2.3s cubic-bezier(.75, 0, .5, 1) infinite;
+}
+@keyframes rotate{
+    50%{
+        transform: rotate(360deg);
+    }
+    100%{
+        transform: rotate(720deg);
+    }
+}
+.preloader span:nth-child(1){
+    transform: translate(-28px, -28px);
+    animation: shape_1 2.3s cubic-bezier(.75, 0, .5, 1) infinite;
+}
+@keyframes shape_1 {
+    60%{
+        transform: scale(.4);
+    }
+}
+.preloader span:nth-child(2){
+    transform: translate(28px, -28px);
+    animation: shape_2 2.3s cubic-bezier(.75, 0, .5, 1) infinite;
+}
+@keyframes shape_2 {
+    40%{
+        transform: scale(.4);
+    }
+}
+.preloader span:nth-child(3){
+    position: relative;
+    border-radius: 0px;
+    transform: scale(0.98) rotate(-45deg);
+    animation: shape_3 2.3s cubic-bezier(.75, 0, .5, 1) infinite;
+}
+@keyframes shape_3 {
+    50%{
+        border-radius: 100%;
+        transform: scale(.5) rotate(-45deg);
+    }
+    100%{
+        border-radius: 0%;
+        transform: scale(.98) rotate(-45deg);
+    }
+}
+.container .shadow{
+    position: relative;
+    display: block;
+    height: 16px;
+    width: 64px;
+    background: #d9d9d9;
+    border: 1px solid #d9d9d9;
+    border-radius: 50%;
+    top: 30px;
+    animation: shadow 2.3s cubic-bezier(.75, 0, .5, 1) infinite;
+}
+
+@keyframes shadow {
+    50%{
+        border-color: #f2f2f2;
+        transform: scale(.5);
+    }
+}
