@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1c1c25;
+}
+section::before {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: 40%;
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(#e96443, #904e95);
+    border-radius: 50%;
+}
+.card {
+    position: relative;
+    width: 508px;
+    height: 314px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+.card .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(8px);
+    transform-style: preserve-3d;
+    transition: 1s;
+    backface-visibility: hidden;
+}
+.card:hover .face.front{
+    transform: rotateY(180deg);
+}
+.card .face.back{
+    transform: rotateY(180deg);
+}
+.card:hover .face.back{
+    transform: rotateY(360deg);
+}
+.card .front::before {
+    content: '';
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: white;
+    opacity: .5;
+}
+.card .front::after {
+    content: '';
+    position: absolute;
+    bottom: 40px;
+    right: 80px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: white;
+    opacity: .7;
+}
+.card .front .debit {
+    position: absolute;
+    left: 40px;
+    top:30px;
+    color: white;
+    font-weight: 500;
+}
+.card .front .bank {
+    position: absolute;
+    right: 40px;
+    top:25px;
+    color: white;
+    font-weight: 500;
+    font-size: 24px;
+}
+.card .front .chip{
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    max-width: 64px;
+}
+.card .front .number {
+    position: absolute;
+    bottom: 130px;
+    left: 40px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 2px 1px #0005;
+    color: white;
+}
+.card .face.front .valid {
+    position: absolute;
+    bottom: 90px;
+    left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 300;
+    font-size: 1em;
+}
+.card .face.front .valid span:last-child{
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.card .face.front .cardholder {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: white;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+.card .face.back .blackbar{
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    top: 40px;
+    background: black;
+}
+.ccvtext {
+    position: absolute;
+    top: 120px;
+    left: 30px;
+}
+.ccvtext h5 {
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.whitebar{
+    position: relative;
+    width: 400px;
+    height: 40px;
+    background: white;
+    margin-top: 5px;
+}
+.ccv{
+    position: relative;
+    background: #ccc;
+    width: 50px;
+    height: 30px;
+    top: -35px;
+    left: 390px;
+}
+.text{
+    position: absolute;
+    color: white;
+    top: 200px;
+    left: 30px;
+    right: 30px;
+    font-size: 10px;
+}
