@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #333333;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+}
+
+.container span {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    float: left;
+    /*background: white;*/
+}
+
+.c::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #1da1f2;
+    animation: fade 1s infinite;
+}
+
+.c2::before {
+    animation-delay: .1s;
+}
+
+.c3::before {
+    animation-delay: .2s;
+}
+
+.c4::before {
+    animation-delay: .3s;
+}
+
+.c5::before {
+    animation-delay: .4s;
+}
+
+@keyframes fade {
+    100% {
+        width: 0;
+        height: 0;
+    }
+}
