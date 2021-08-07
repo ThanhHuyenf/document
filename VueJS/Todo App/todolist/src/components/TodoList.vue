@@ -3,25 +3,13 @@
     <input type="text" class="todo-input" placeholder="What need to be done?"
            v-model="newTodo"
            @keyup.enter="addTodo">
-    <div v-for="(todo, index) in filterTodos"
-         :key="todo.id" class="todo-item">
-      <div class="todo-item-left">
-        <input type="checkbox" v-model="todo.completed">
-        <div v-if="!todo.editing" class="todo-item-label"
-             @dblclick="editTodo(todo)"
-        :class="{completed : todo.completed}">{{ todo.title }}
-        </div>
-        <input v-else class="todo-item-edit" type="text"
-               v-model="todo.title"
-               @blur="doneEdit(todo)"
-               @keyup.enter="doneEdit(todo)" v-focus
-               @keyup.esc="cancelEdit(todo)">
-      </div>
-      <div class="remove-item" @click="removeTodo(index)">&times;</div>
-    </div>
+    <TodoItem v-for="(todo, index) in filterTodos"
+              :key="todo.id" :todo="todo" :index="index"
+              @removedTodo="removeTodo"
+              @finishedEdit="finishedEdit"></TodoItem>
     <div class="extra-container">
       <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodo">Check all</label></div>
-      <div>{{remaining}} items left</div>
+      <div>{{ remaining }} items left</div>
     </div>
     <div class="extra-container">
       <div>
@@ -35,9 +23,12 @@
 </template>
 
 <script>
+import TodoItem from './TodoItem'
+
 export default {
   name: 'TodoList',
-  data () {
+  components: {TodoItem},
+  data() {
     return {
       idForTodo: 3,
       newTodo: '',
@@ -66,13 +57,13 @@ export default {
     }
   },
   computed: {
-    remaining () {
+    remaining() {
       return this.todos.filter((item) => !item.completed).length
     },
-    anyRemaining () {
+    anyRemaining() {
       return this.remaining !== 0
     },
-    filterTodos () {
+    filterTodos() {
       if (this.filter === 'all') {
         return this.todos
       }
@@ -83,12 +74,12 @@ export default {
         return this.todos.filter(item => item.completed)
       }
     },
-    showClearCompleted () {
+    showClearCompleted() {
       return this.todos.filter(item => item.completed).length > 0
     }
   },
   methods: {
-    addTodo () {
+    addTodo() {
       if (this.newTodo.trim() === 0) {
         return
       }
@@ -101,29 +92,28 @@ export default {
       this.newTodo = ''
       this.idForTodo++
     },
-    removeTodo (index) {
+    removeTodo(index) {
       this.todos.splice(index, 1)
     },
-    editTodo (todo) {
-      this.beforeEdit = todo.title
-      todo.editing = true
-    },
-    doneEdit (todo) {
+    doneEdit(todo) {
       if (todo.title.trim().length === 0) {
         todo.title = this.beforeEdit
       }
       todo.editing = false
     },
-    cancelEdit (todo) {
+    cancelEdit(todo) {
       todo.title = this.beforeEdit
       todo.editing = false
     },
-    checkAllTodo () {
+    checkAllTodo() {
       /* eslint-disable */
       this.todos.forEach((todo) => todo.completed = event.target.checked)
     },
-    clearCompleted () {
+    clearCompleted() {
       this.todos = this.todos.filter(item => !item.completed)
+    },
+    finishedEdit(data) {
+      this.todos.splice(data.index, 1, data.todo)
     }
   }
 }
@@ -139,9 +129,11 @@ export default {
   padding: 10px 18px;
   font-size: 18px;
 }
-.todo-input:focus{
+
+.todo-input:focus {
   outline: none;
 }
+
 .todo-item {
   display: flex;
   align-items: center;
@@ -163,9 +155,11 @@ export default {
   border: 1px solid white;
   margin-left: 12px;
 }
-.todo-item-edit:focus{
+
+.todo-item-edit:focus {
   outline: none;
 }
+
 .todo-item-edit {
   padding: 10px;
   font-size: 24px;
@@ -173,11 +167,13 @@ export default {
   width: 100%;
   border: 1px solid wheat;
 }
+
 .completed {
   text-decoration: line-through;
   color: #666;
 }
-.extra-container{
+
+.extra-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -186,10 +182,12 @@ export default {
   margin-top: 10px;
   padding-top: 10px;
 }
-.active{
+
+.active {
   background: powderblue;
 }
-button{
+
+button {
   border: none;
   outline: none;
   background: none;
