@@ -1,18 +1,8 @@
 <template>
   <div class="todo-item">
-    <div class="todo-item-left">
-      <input type="checkbox" v-model="completed">
-      <div v-if="!editing" class="todo-item-label"
-           @dblclick="editTodo()"
-           :class="{completed : completed}">{{ title }}
-      </div>
-      <input v-else class="todo-item-edit" type="text"
-             v-model="title"
-             @blur="doneEdit()"
-             @keyup.enter="doneEdit()" v-focus
-             @keyup.esc="cancelEdit()">
-      <div class="remove-item" @click="removeTodo(index)">&times;</div>
-    </div>
+    <input type="checkbox">
+    <div class="title">Hihi</div>
+    <div>&times;</div>
   </div>
 </template>
 
@@ -27,6 +17,10 @@ export default {
     index: {
       type: Number,
       required: true
+    },
+    checkAll: {
+      type: Boolean,
+      required: true
     }
   },
   data () {
@@ -39,14 +33,14 @@ export default {
     }
   },
   methods: {
-    removeTodo(index) {
+    removeTodo (index) {
       this.$emit('removedTodo', index)
     },
-    editTodo() {
+    editTodo () {
       this.beforeEdit = this.title
       this.editing = true
     },
-    doneEdit() {
+    doneEdit () {
       if (this.title.trim().length === 0) {
         this.title = this.beforeEdit
       }
@@ -57,23 +51,23 @@ export default {
           'id': this.id,
           'title': this.title,
           'completed': this.completed,
-          'editing': this.editing,
+          'editing': this.editing
         }
       })
     },
-    cancelEdit() {
+    cancelEdit () {
       this.title = this.beforeEdit
       this.editing = false
-    },
+    }
   }
 }
 </script>
 
 <style scoped>
-/*.todo-item {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  margin-top: 12px;*/
-/*  justify-content: space-between;*/
-/*}*/
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  justify-content: space-between;
+}
 </style>
