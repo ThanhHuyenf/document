@@ -207,12 +207,12 @@ body {
     width: 100%;
     padding: 15px 30px;
     pointer-events: none;
-    bottom: -70%;
+    bottom: -30%;
     opacity: 0;
 }
-.music-list .show{
+.music-list.show{
     pointer-events: auto;
-    bottom: -70%;
+    bottom: 0%;
     opacity: 1;
 }
 .music-list .header .row {
@@ -263,4 +263,9 @@ body {
 }
 .audio-duration{
     font-size: 16px;
+}
+
+ul li.playing{
+    color: violet;
+    pointer-events: none;
 }
