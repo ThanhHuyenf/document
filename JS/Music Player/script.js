@@ -207,8 +207,8 @@ for (let i = 0; i < allMusic.length; i++) {
     })
 }
 
-const allLiTags= ulTag.querySelector('li')
-
+const allLiTags= ulTag.querySelectorAll('li')
+console.log("allLiTags", allLiTags)
 for (let j=0; j< allLiTags.length; j++){
     if(allLiTags[j].getAttribute("li-index") == (musicIndex-1)){
         allLiTags[j].classList.add('playing')

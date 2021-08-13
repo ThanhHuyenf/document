@@ -27,7 +27,7 @@ body {
     position: relative;
 }
 
-.wrapper:before, .wrapper:after {
+.wrapper:after {
     z-index: -1;
     position: absolute;
     content: "";
@@ -266,6 +266,10 @@ body {
 }
 
 ul li.playing{
+    color: violet;
+    pointer-events: none;
+}
+.music-list ul .playing .row span{
     color: violet;
     pointer-events: none;
 }
