@@ -27,7 +27,7 @@ body {
     position: relative;
 }
 
-.wrapper:after {
+.wrapper:after, .wrapper:before {
     z-index: -1;
     position: absolute;
     content: "";
@@ -116,6 +116,7 @@ body {
     background: linear-gradient(to right, lightpink 0%, #9f6ea3 100%);
     width: 0%;
     position: relative;
+    cursor: pointer;
 }
 
 .progress-bar::before {
@@ -146,6 +147,7 @@ body {
 
 .control {
     margin: 40px 0 5px 0;
+    cursor: pointer;
 }
 
 .control i {
@@ -228,6 +230,7 @@ body {
 .header #close {
     font-size: 22px;
     color: #777777;
+    cursor: pointer;
 }
 .music-list ul::-webkit-scrollbar{
     width: 0;

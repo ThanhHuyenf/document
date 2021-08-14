@@ -48,6 +48,7 @@ let musicIndex = 1
 
 window.addEventListener('load', () => {
     loadMusic(musicIndex)
+    playingNow()
 })
 
 function loadMusic(indexNumb) {
@@ -203,16 +204,36 @@ for (let i = 0; i < allMusic.length; i++) {
         let audioDuration = liAudioTag.duration
         let totalMin = Math.floor(audioDuration / 60)
         let totalSec = Math.floor(audioDuration % 60)
-        totalSec < 10 ? liAudioDuration.innerText = `${totalMin}:0${totalSec}` : liAudioDuration.innerText = `${totalMin}:${totalSec}`
+        totalSec < 10 ? liAudioDuration.setAttribute("t-duration", `${totalMin}:0${totalSec}`)  : liAudioDuration.setAttribute("t-duration", `${totalMin}:${totalSec}`)
+        totalSec < 10 ? liAudioDuration.innerText =`${totalMin}:0${totalSec}` : liAudioDuration.innerText =`${totalMin}:${totalSec}`
     })
 }
 
 const allLiTags= ulTag.querySelectorAll('li')
-console.log("allLiTags", allLiTags)
-for (let j=0; j< allLiTags.length; j++){
-    if(allLiTags[j].getAttribute("li-index") == (musicIndex-1)){
-        allLiTags[j].classList.add('playing')
-    }
 
-    allLiTags[j].setAttribute("onclick", "clicked(this)")
+function playingNow(){
+    for (let j=0; j< allLiTags.length; j++){
+        let audioTag = allLiTags[j].querySelector('.audio-duration')
+
+        if(allLiTags[j].classList.contains("playing")){
+            allLiTags[j].classList.remove("playing")
+            let addDuration = audioTag.getAttribute("t-duration")
+            audioTag.innerText = addDuration
+        }
+
+        if(allLiTags[j].getAttribute("li-index") == (musicIndex-1)){
+            allLiTags[j].classList.add('playing')
+            audioTag.innerText = "playing"
+        }
+
+        allLiTags[j].setAttribute("onclick", "clicked(this)")
+    }
+}
+
+function clicked(element){
+    let getLiIndex = element.getAttribute('li-index')
+    musicIndex = +getLiIndex+1 //+1 dung voi index
+    loadMusic(musicIndex)
+    playMusic()
+    playingNow()
 }
