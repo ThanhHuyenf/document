@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #262626;
+}
+
+.cup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 180px;
+    width: 150px;
+    border: 6px solid #262626;
+    border-top: 2px solid transparent;
+    border-radius: 5px 5px 15px 15px;
+    background: url("https://image.ibb.co/fmHm66/wave.png");
+    background-position: 0 350px;
+    background-repeat: repeat-x;
+    animation: filling 10s ease-in-out infinite;
+    box-shadow: 0 0 0 6px #ffffff,
+                0 20px 35px rgba(0, 0, 0, 1);
+}
+.cup::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    border: 6px solid #ffffff;
+    right: -57px;
+    top: 30px;
+    border-radius: 0 35px 35px 0;
+}
+@keyframes filling {
+    50%{
+        background-position: 3000px 0px;
+    }
+    100%{
+        background-position: 6000px 0px;
+    }
+
+}
