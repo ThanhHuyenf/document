@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.outer {
+    height: 100vh;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease;
+}
+
+#switch:checked ~ .outer {
+    background: #092c3e;
+}
+
+.outer .content {
+    display: flex;
+    max-width: 570px;
+    background: #ffffff;
+    padding: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+    border-radius: 12px;
+    position: relative;
+}
+#switch:checked ~ .outer .content{
+    background: #092c3e;
+}
+.content .toggle {
+    width: 40px;
+    height: 20px;
+    background: #092c3e;
+    position: absolute;
+    right: 15px;
+    top: 13px;
+    border-radius: 20px;
+    display: flex;
+    cursor: pointer;
+}
+#switch:checked ~ .outer .toggle{
+    background: #ffffff;
+}
+.content .circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    margin-left: 3px;
+    margin-top: 2px;
+    transition: all .4s ease;
+}
+#switch:checked ~ .outer .circle{
+    margin-left: 22px;
+    background: #092c3e;
+}
+
+.content .profile-img {
+    height: 232px;
+    width: 200px;
+    background: #092c3e;
+    padding: 3px;
+    border-radius: 12px;
+}
+#switch:checked ~ .outer .profile-img{
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+}
+.content .profile-img img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    border: 3px solid #ffffff;
+}
+
+#switch:checked ~ .outer .profile-img img{
+    border-color: transparent;
+}
+.content .details {
+    width: 58%;
+    margin: 10px 0 20px 20px;
+}
+#switch:checked ~ .outer .details{
+    color: rgba(255, 255, 255, .9);
+}
+.content .details .name {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.content .details .job {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.content .details p {
+    font-size: 15px;
+    margin-top: 6px;
+}
+
+.content .details button {
+    display: block;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    padding: 6px 14px;
+    margin-top: 30px;
+    background: #092c3e;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.content .details button:hover{
+    transform: scale(.97);
+}
+#switch:checked ~ .outer button{
+    background: white;
+    color: #092c3e;
+}
+.content .details .media-icons{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+.details .media-icons a {
+    display: inline-flex;
+    margin: 0 3px;
+    text-decoration: none;
+    color: #092c3e;
+    font-size: 18px;
+    opacity: .7;
+}
+.details .media-icons a:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+#switch:checked ~ .outer .media-icons a{
+    color: #ffffff;
+}
+#switch{
+    display: none;
+}
