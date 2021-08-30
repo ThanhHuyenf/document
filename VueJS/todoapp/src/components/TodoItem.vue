@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="todo-item">
-      <div class="todo-item-left">
+      <div class="todo-item-left" @dblclick="item.editing=true">
         <input type="checkbox">
         <div v-if="item.editing === false" class="label-title">{{ item.title }}</div>
-        <input v-else type="text" class="edit-title" v-model="item.title">
+        <input v-else type="text" class="edit-title" v-model="item.title" @keyup.enter="doneEdit">
       </div>
       <div class="remove-item">&times;</div>
     </div>
@@ -20,6 +20,12 @@ export default {
     },
     index: {
       type: Number
+    }
+  },
+  methods: {
+    doneEdit(){
+      this.$emit("doneEdit", this.item.title, this.index)
+      this.item.editing = false
     }
   }
 }
@@ -52,8 +58,12 @@ export default {
 }
 .edit-title {
   font-size: 20px;
-  border: none;
+  /*border: none;*/
   outline: none;
-  display: none;
+  padding-left: 10px;
+}
+input:checked ~ .label-title {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, .5);
 }
 </style>

@@ -3,7 +3,8 @@
     <input type="text" placeholder="What need to be done?" v-model="newTodo" @keyup.enter="addNewTodo">
     <TodoItem v-for="item in todos" :key="item.id"
               :item="item"
-              :index="index"></TodoItem>
+              :index="index"
+    @doneEdit="doneEdit(data)"></TodoItem>
     <div class="extra-container">
       <div>
         <label>
@@ -15,9 +16,9 @@
     </div>
     <div class="extra-container">
       <div>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+        <button class="extra-btn all-todo">All</button>
+        <button class="extra-btn active-todo">Active</button>
+        <button class="extra-btn completed-todo">Completed</button>
       </div>
       <div>
         <button>Clear completed</button>
@@ -69,6 +70,9 @@ export default {
 
       this.newTodo = ''
       this.idTodo++
+    },
+    doneEdit(data, index){
+      this.todos[index-1].title= data
     }
   }
 }
@@ -96,6 +100,14 @@ input {
 .extra-container input {
   width: 15px;
   height: 15px;
-
+}
+.extra-btn{
+  padding: 6px 8px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.extra-btn+.extra-btn{
+  margin-left: 3px;
 }
 </style>
