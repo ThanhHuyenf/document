@@ -1,0 +1,5 @@
+htmlspecialchars($str) : reform chuỗi str, chặn truyền chuỗi HTML
+isset($abc): kiểm tra biến $abc có tồn tại hay ko
+in_array($value, $array): kiểm tra phần tử có nằm trong mảng hay không
+filter_var($raw_email, FILTER_VALIDATE_EMAIL): kiểm tra xem có đúng là email hay ko?
+$options = ["options"=>["min_range"=>1900], "max_range"=>date("Y")]: tạo khoảng thời gian để kiểm tra, date("Y"): lấy năm của hiện tại

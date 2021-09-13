@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    p{
+      font-size: 40px;
+      position: relative;
+    }
+    p::before{
+      content: "";
+      width: 100px;
+      height: 5px;
+      background: red;
+      position: absolute;
+
+    }
+    p::after{
+      content: "goodbye";
+    }
+  </style>
+</head>
+<body>
+<p>Hello World</p>
+</body>
+</html>
