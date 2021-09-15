@@ -1,5 +1,71 @@
 htmlspecialchars($str) : reform chuỗi str, chặn truyền chuỗi HTML
+
 isset($abc): kiểm tra biến $abc có tồn tại hay ko
+
 in_array($value, $array): kiểm tra phần tử có nằm trong mảng hay không
+
 filter_var($raw_email, FILTER_VALIDATE_EMAIL): kiểm tra xem có đúng là email hay ko?
+
 $options = ["options"=>["min_range"=>1900], "max_range"=>date("Y")]: tạo khoảng thời gian để kiểm tra, date("Y"): lấy năm của hiện tại
+
+filter_var($raw_birth_year, FILTER_VALIDATE_INT, $options): kiểm tra xem biến
+ 
+$raw_birth_year có nằm trong khoảng options hay ko
+
+ucfirst($this->name): Viết hoa chữ cái đầu tiên của biến được truyền vào
+
+strtolower($color): Viết thường chuỗi trong ngoặc
+
+__________________________
+
+__contruct(): hàm construct trong PHP, hàm này có thể nhận biến
+
+*Tính kế thừa trong PHP
+class ChildClass extends ParentClass {}: lớp ChildClass kế thừa từ lớp ParentClass
+
+*overloading
+- Các phương thức muốn dùng overloading sẽ phải để public 
+Muốn sử dụng các hàm từ lớp cha thì ta dùng cú pháp sau: parent::tên_hàm()
+VD: 
+class Pet{
+function type() {
+    return "pet";
+  }
+}
+//hàm type trong class pet trả về chuỗi "pet"
+
+class Dog extends Pet{
+  function type() {
+    return "dog";
+  }
+  function classify(){
+    echo "This " . parent::type() . " is of type " . $this->type();
+    // Prints: This pet is of type dog 
+  }
+}
+
+// Ta có class Dog kế thừa từ class Pet. Trong class Dog cũng có hàm type() như trả về string "dog" (khác so với chuỗi được trả ra trong hàm type của class Pet)
+// Sử dụng hàm type của class Dog trong phạm vi class Dog thì ta sử dụng $this->type() như bình thường, còn muốn sử dụng hàm type() của class Pet (tức class cha) thì ta dùng parent::type()
+
+__________________________
+
+getter và setter trong PHP
+- Khi sử dụng setter thì nên đảm bảo việc kiểm tra kiểu dữ liệu
+VD: 
+function setName($name) {
+  if (gettype($name) === "string") {
+    $this->name = $name;
+    return true;
+  } else {
+    return false;
+  }
+}
+//Kiểm tra kiểu dữ liệu của $name trước khi gán vào giá trị vào biến khác
+
+__________________________
+
+public static $max_number_of_characters = 80; 
+//Khai báo static trong class
+
+Để lấy được biến static ta sử dụng SRO (Scope Resolution Operator) "::" 
+VD: echo StringUtils::$max_number_of_characters;
