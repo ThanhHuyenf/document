@@ -1,0 +1,65 @@
+Vuex
+Cần một centre store để lưu trữ dữ liệu và phân phối tới các component trong project
+vue init webpack-simple vuex-playlist : Tạo một project đơn giản để thực hành
+
+npm install vuex --save để cài đặt vuex vào project 
+
+Tạo folder store trong src
+Tạo file store.js
+trong file store.js thì phải
+import Vue from "vue"
+import Vuex from "vue"
+
+Vue.use(Vuex)
+const store = new Vuex.Store()
+Tạo một cửa hàng
+Sau đó truyền dữ liệu vào dưới dạng object
+const store = new Vuex.Store({
+state: {
+products: [item1, item2, item3,...]
+}
+}
+)
+
+Muốn component khác sử dụng được thì cần export dữ liệu
+export const store = new Vuex.Store()
+
+Nhớ phải export
+
+Sau khi export thì muốn dùng ở chỗ nào sẽ phải import vào file main.js 
+
+import {store} from './store/store'
+new Vue({
+  store:store,
+  el: '#app',
+  render: h => h(App)
+})
+
+Điều đó có nghĩa là, bất kể component nào là #app và các component con của nó đều sử dụng được store và các tài nguyên đã khởi tạo trong store
+
+Các component có thể lấy dữ liệu từ store thông qua computed
+computed: {
+    products(){
+      return this.$store.state.products
+    }
+  }
+
+Dùng getters để tính toán các state
+getter luôn lấy state làm tham số thứ nhất
+
+saleProducts: state => {
+      var saleProducts = state.products.map(item =>{
+        return {
+          name: item.name+ "hihi",
+          price: item.price*0.5
+        }
+      })
+	return saleProducts
+    }
+
+Các component có thể lấy dữ liệu từ getters tương tự như cách lấy từ state
+
+Nếu muốn thay đổi dữ liệu trong state thì ta chỉ có thể dùng mutations
+
+Muốn gọi hàm khai báo trong mutation thì ta gọi this.$store.commit('ten_function')
+
